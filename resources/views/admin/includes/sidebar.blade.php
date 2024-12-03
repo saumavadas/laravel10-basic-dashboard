@@ -53,7 +53,7 @@
                         </a>
                     </li>
                 @endcan
-                @can('category_access')
+                @can('categories_access')
                     <li class="nav-item">
                         <a class="nav-link {{ (request()->is('admin/categories*')) ? 'active' : '' }}"
                            href="{{ route('admin.categories.index') }}">
