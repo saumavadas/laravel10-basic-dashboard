@@ -74,3 +74,12 @@ Breadcrumbs::for('admin.categories.edit', function (BreadcrumbTrail $trail): voi
     $trail->parent('admin.index');
     $trail->push('Category edit', route('admin.categories.edit'));
 });
+
+Breadcrumbs::for('admin.media.index', function (BreadcrumbTrail $trail): void {
+    $trail->parent('admin.index');
+    $trail->push('Media Manager', route('admin.media.index'));
+});
+Breadcrumbs::for('admin.media.create', function (BreadcrumbTrail $trail): void {
+    $trail->parent('admin.media.index');
+    $trail->push('Media Manager', route('admin.media.create'));
+});

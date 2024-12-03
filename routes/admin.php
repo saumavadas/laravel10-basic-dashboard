@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
-
+use App\Http\Controllers\Admin\MediaController;
 
 Auth::routes();
 
@@ -27,4 +27,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::resource('permissions', PermissionController::class);
 
     Route::resource('categories', CategoryController::class);
+    Route::resource('media', MediaController::class)->except(['edit', 'update', 'show']);
 });

@@ -71,6 +71,14 @@
                         </a>
                     </li>
                 @endcan
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ (request()->is('admin/media*')) ? 'active' : '' }}"
+                           href="{{ route('admin.media.index') }}">
+                            <span data-feather="file" class="align-text-bottom"></span>
+                            Media Manager
+                        </a>
+                    </li>
             </ul>
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
