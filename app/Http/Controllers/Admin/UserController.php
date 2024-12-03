@@ -7,6 +7,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Requests\StoreRoleRequest;
+
+use Spatie\Permission\Models\Role;
+
 
 class UserController extends Controller
 {
@@ -30,7 +34,8 @@ class UserController extends Controller
     public function create()
     {
         abort_if(Gate::denies('permission_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        return view('admin.users.create');
+        $roles = Role::all()->pluck('name', 'id');
+        return view('admin.users.create', compact('roles') );
         
     }
 
@@ -41,8 +46,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {      
         $validatedData = $request->validate([
             'name' => 'required|regex:/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/|max:255',
             'email' => 'required|email|unique:users,email|max:255',
@@ -54,6 +58,9 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
+
+        $user->assignRole($request->role);
+        
 
         if ($user->save()) {
             return redirect()->route('admin.users.index')->with('message', 'User created successfully!');
@@ -118,4 +125,6 @@ class UserController extends Controller
         }
         return redirect(Response::HTTP_FORBIDDEN, '403 Forbidden');
     }
+
+    
 }
