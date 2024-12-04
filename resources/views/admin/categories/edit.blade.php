@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.edit')
 
 @section('content')
 <div class="container">
@@ -26,6 +26,9 @@
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
+        <a class="btn btn-secondary" href="{{ route('admin.categories.index') }}">
+                    Back to list
+                </a>
     </form>
 </div>
 @endsection

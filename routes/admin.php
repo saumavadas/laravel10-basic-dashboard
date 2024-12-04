@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\UserMetaController;
 
 Auth::routes();
 
@@ -22,10 +23,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::put('update-password', [ProfileController::class, 'updatePassword'])->name('password.update');
 
     Route::resource('users', UserController::class);
-    Route::get('user-ban-unban/{id}/{status}', 'UserController@banUnban')->name('user.banUnban');
+    
+    
+    #Route::get('user-ban-unban/{id}/{status}', 'UserController@banUnban')->name('user.banUnban');
+    
+
+    Route::get('user-ban-unban/{id}/{status}', [UserController::class, 'banUnban'])->name('users.banUnban');
+
+    
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
 
     Route::resource('categories', CategoryController::class);
     Route::resource('media', MediaController::class)->except(['edit', 'update', 'show']);
+
+
+    Route::get('users/{user}/metas', [UserMetaController::class, 'index'])->name('user_metas.index');
+    Route::post('users/{user}/metas', [UserMetaController::class, 'store'])->name('user_metas.store');
+    Route::delete('users/{user}/metas/{meta}', [UserMetaController::class, 'destroy'])->name('user_metas.destroy');
 });

@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+#use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
@@ -44,4 +47,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function metas(): HasMany
+    {
+        return $this->hasMany(UserMeta::class, 'user_id');
+    }
+
+    public function getUserWithMeta($userId)
+    {
+        return self::with('metas')->find($userId);
+    }
+
+
 }

@@ -32,6 +32,9 @@
                             Roles
                         </th>
                         <th>
+                            Details
+                        </th>
+                        <th>
                             Status
                         </th>
                         <th>
@@ -60,6 +63,9 @@
                                 @endforeach
                             </td>
                             <td>
+                                <a href="{{ route('admin.users.show', $user->id) }}" class="badge bg-primary">Show</a>   
+                            </td>    
+                            <td>
                                 @if($user->status)
                                     <span class="badge bg-success">Active</span>
                                 @else
@@ -72,9 +78,9 @@
                             <td>
                                 @if (auth()->user()->hasRole('Admin'))
                                 @if($user->status)
-                                    <a href="{{ route('admin.user.banUnban', ['id' => $user->id, 'status' => 0]) }}" class="badge bg-danger">Block</a>
+                                    <a href="{{ route('admin.users.banUnban', ['id' => $user->id, 'status' => 0]) }}" class="badge bg-danger">Block</a>
                                 @else
-                                    <a href="{{ route('admin.user.banUnban', ['id' => $user->id, 'status' => 1]) }}" class="badge bg-info">Unblock</a>
+                                    <a href="{{ route('admin.users.banUnban', ['id' => $user->id, 'status' => 1]) }}" class="badge bg-info">Unblock</a>
                                 @endif
                                 @endif
                             </td>

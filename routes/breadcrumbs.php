@@ -17,6 +17,7 @@ Breadcrumbs::for('admin.users.create', function (BreadcrumbTrail $trail): void {
     $trail->parent('admin.users.index');
     $trail->push('Add new user', route('admin.users.create'));
 });
+
 // Role
 Breadcrumbs::for('admin.roles.index', function (BreadcrumbTrail $trail): void {
     $trail->parent('admin.index');
@@ -83,3 +84,5 @@ Breadcrumbs::for('admin.media.create', function (BreadcrumbTrail $trail): void {
     $trail->parent('admin.media.index');
     $trail->push('Media Manager', route('admin.media.create'));
 });
+
+

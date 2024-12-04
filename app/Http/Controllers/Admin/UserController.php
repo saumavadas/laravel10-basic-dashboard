@@ -11,6 +11,8 @@ use App\Http\Requests\StoreRoleRequest;
 
 use Spatie\Permission\Models\Role;
 
+use App\Models\UserMeta;
+
 
 class UserController extends Controller
 {
@@ -76,7 +78,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        // $user = User::findOrFail($id);
+        // $user_meta = UserMeta::findOrFail($user_id);
+        $user = new User();
+        $userWithMeta = $user->getUserWithMeta($id)->toArray();
+
+        return view('admin.users.show', compact('userWithMeta'));
     }
 
     /**
