@@ -86,3 +86,13 @@ Breadcrumbs::for('admin.media.create', function (BreadcrumbTrail $trail): void {
 });
 
 
+Breadcrumbs::for('admin.sellers.index', function (BreadcrumbTrail $trail): void {
+    $trail->parent('admin.index');
+    $trail->push('Sellers', route('admin.sellers.index'));
+});
+
+Breadcrumbs::for('admin.customers.index', function (BreadcrumbTrail $trail): void {
+    $trail->parent('admin.index');
+    $trail->push('Customers', route('admin.customers.index'));
+});
+

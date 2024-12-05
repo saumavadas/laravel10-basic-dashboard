@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\UserMetaController;
+use App\Http\Controllers\Admin\SellerController;
+use App\Http\Controllers\Admin\CustomerController;
 
 Auth::routes();
 
@@ -24,12 +26,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
 
     Route::resource('users', UserController::class);
     
-    
-    #Route::get('user-ban-unban/{id}/{status}', 'UserController@banUnban')->name('user.banUnban');
-    
-
     Route::get('user-ban-unban/{id}/{status}', [UserController::class, 'banUnban'])->name('users.banUnban');
-
     
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
@@ -41,4 +38,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::get('users/{user}/metas', [UserMetaController::class, 'index'])->name('user_metas.index');
     Route::post('users/{user}/metas', [UserMetaController::class, 'store'])->name('user_metas.store');
     Route::delete('users/{user}/metas/{meta}', [UserMetaController::class, 'destroy'])->name('user_metas.destroy');
+
+
+    Route::resource('sellers', SellerController::class);
+    Route::resource('customers', CustomerController::class);
 });

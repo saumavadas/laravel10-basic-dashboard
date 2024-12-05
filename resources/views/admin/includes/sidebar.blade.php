@@ -58,19 +58,27 @@
                         <a class="nav-link {{ (request()->is('admin/categories*')) ? 'active' : '' }}"
                            href="{{ route('admin.categories.index') }}">
                             <span data-feather="list" class="align-text-bottom"></span>
-                            Categories
+                            Service Categories
                         </a>
                     </li>
                 @endcan
-                @can('tag_access')
+                
                     <li class="nav-item">
-                        <a class="nav-link {{ (request()->is('admin/tags*')) ? 'active' : '' }}"
-                           href="{{ route('admin.tags.index') }}">
+                        <a class="nav-link {{ (request()->is('admin/sellers*')) ? 'active' : '' }}"
+                           href="{{ route('admin.sellers.index') }}">
                             <span data-feather="tag" class="align-text-bottom"></span>
-                            Tags
+                            Sellers
                         </a>
                     </li>
-                @endcan
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ (request()->is('admin/customers*')) ? 'active' : '' }}"
+                           href="{{ route('admin.customers.index') }}">
+                            <span data-feather="tag" class="align-text-bottom"></span>
+                            Customers
+                        </a>
+                    </li>
+                
 
                     <li class="nav-item">
                         <a class="nav-link {{ (request()->is('admin/media*')) ? 'active' : '' }}"
