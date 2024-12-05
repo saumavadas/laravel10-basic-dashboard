@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\API\SellerAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,14 @@ use App\Http\Controllers\Api\UserController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) 
+{
     return $request->user();
 });
 
-Route::get('/users', [UserController::class, 'index']);
+
+Route::prefix('seller')->group(function () 
+{
+    Route::post('register-seller', [SellerAuthController::class, 'registerSeller']);
+    Route::post('verify-seller-otp', [SellerAuthController::class, 'verifySellerOtp']);
+});

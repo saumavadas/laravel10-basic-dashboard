@@ -15,6 +15,11 @@
             <input type="text" name="slug" value="{{ $category->slug }}" class="form-control" required>
         </div>
         <div class="form-group">
+            <label for="slug">Image Path</label>
+            <input type="text" name="image_path" value="{{ $category->image_path }}" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
             <label for="parent_id">Parent Category</label>
             <select name="parent_id" class="form-control">
                 <option value="">None</option>

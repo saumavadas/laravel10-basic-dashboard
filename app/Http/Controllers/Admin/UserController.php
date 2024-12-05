@@ -52,6 +52,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|regex:/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/|max:255',
             'email' => 'required|email|unique:users,email|max:255',
+            'phone_number' => 'required|digits:10|unique:users',
             'password' => 'required|string|min:8', // Adjust the min length as per your requirements
         ]);
 
@@ -59,6 +60,7 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->phone_number = $request->phone_number;
         $user->password = $request->password;
 
         $user->assignRole($request->role);

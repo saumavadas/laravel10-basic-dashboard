@@ -3,17 +3,25 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Seller;
 use Illuminate\Http\Request;
-use App\Models\User;
 
-class SellerController extends UserController
+class SellerController extends Controller
 {
     public function index()
     {
-        // Fetch all users with the role 'stuff'
-        $sellers = User::role('Seller')->get();
-
-        // Return the view with the data
+        $sellers = Seller::paginate(10);
         return view('admin.sellers.index', compact('sellers'));
+    }
+
+    public function show(Seller $seller)
+    {
+        return view('admin.sellers.show', compact('seller'));
+    }
+
+    public function destroy(Seller $seller)
+    {
+        $seller->delete();
+        return redirect()->route('sellers.index')->with('success', 'Seller deleted successfully.');
     }
 }

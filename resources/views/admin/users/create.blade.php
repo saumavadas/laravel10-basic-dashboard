@@ -28,6 +28,17 @@
                     </span>
                     @enderror
                 </div>
+
+                <div class="mb-2">
+                    <label for="title">Phone*</label>
+                    <input type="phone" id="phone_number" name="phone_number" class="form-control @error('name') is-invalid @enderror"
+                            required>
+                    @error('phone_number')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
                 
 
                 <div class="mb-2">

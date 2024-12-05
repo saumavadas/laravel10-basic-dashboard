@@ -40,6 +40,7 @@ class CategoryController extends Controller
         Category::create([
             'name' => $request->name,
             'slug' => Str::slug($request->slug),
+            'image_path' => $request->image_path,
             'parent_id' => $request->parent_id,
         ]);
 
@@ -64,6 +65,7 @@ class CategoryController extends Controller
         $category->update([
             'name' => $request->name,
             'slug' => Str::slug($request->slug),
+            'image_path' => $request->image_path,
             'parent_id' => $request->parent_id,
         ]);
 
